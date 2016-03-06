@@ -46,7 +46,7 @@ $(function () {
         },
         plotOptions: {
             areaspline: {
-                fillOpacity: 0.5
+                stacking: 'normal'
             }
         },
         series: [{
