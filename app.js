@@ -50,6 +50,9 @@ $(function () {
             }
         },
         series: [{
+            name: 'Joe',
+            data: [1, 3, 4, 3, 3, 5, 4]
+        }, {
             name: 'John',
             data: [3, 4, 3, 5, 4, 10, 12]
         }, {
