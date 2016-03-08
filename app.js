@@ -47,6 +47,9 @@ $(function () {
         plotOptions: {
             areaspline: {
                 stacking: 'normal'
+            },
+            line: {
+                lineWidth: 0
             }
         },
         series: [{
