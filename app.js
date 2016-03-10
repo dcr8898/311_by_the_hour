@@ -47,7 +47,10 @@ $(function () {
         plotOptions: {
             areaspline: {
                 stacking: 'normal',
-                lineWidth: 0
+                lineWidth: 0,
+                marker: {
+                    enabled: false
+                }
             }
         },
         series: [{
