@@ -55,13 +55,16 @@ $(function () {
         },
         series: [{
             name: 'Joe',
-            data: [1, 3, 4, 3, 3, 5, 4]
+            data: [1, 3, 4, 3, 3, 6, 4]
         }, {
             name: 'John',
             data: [3, 4, 3, 5, 4, 10, 12]
         }, {
             name: 'Jane',
-            data: [1, 3, 4, 3, 3, 5, 4]
+            data: [1, 3, 4, 4, 3, 5, 4]
+        }, {
+            name: 'dummyOffset',
+            data: [8.5, 6, 5.5, 5, 6, 0.5, 1]
         }]
     });
 });
