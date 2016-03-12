@@ -3,6 +3,12 @@ $(function () {
         chart: {
             type: 'areaspline'
         },
+        colors: [
+            '#abf19d',
+            '#9cc7f0',
+            '#f8b984',
+            'rgba(0,0,0,0)'
+        ],
         title: {
             text: 'Average fruit consumption during one week'
         },
