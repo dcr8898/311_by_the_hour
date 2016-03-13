@@ -69,6 +69,7 @@ $(function () {
             name: 'Jane',
             data: [1, 3, 4, 4, 3, 5, 4]
         }, {
+            showInLegend: false,
             name: 'dummyOffset',
             data: [8.5, 6, 5.5, 5, 6, 0.5, 1]
         }]
