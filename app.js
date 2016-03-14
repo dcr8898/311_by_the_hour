@@ -44,8 +44,7 @@ $(function () {
             }
         },
         tooltip: {
-            shared: true,
-            valueSuffix: ' units'
+            enabled: false
         },
         credits: {
             enabled: false
@@ -70,6 +69,7 @@ $(function () {
             data: [1, 3, 4, 4, 3, 5, 4]
         }, {
             showInLegend: false,
+            showInTooltip: false,
             name: 'dummyOffset',
             data: [8.5, 6, 5.5, 5, 6, 0.5, 1]
         }]
