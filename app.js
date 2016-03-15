@@ -54,7 +54,12 @@ $(function () {
                 stacking: 'normal',
                 lineWidth: 0,
                 marker: {
-                    enabled: false
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: false
+                        }
+                    }
                 }
             }
         },
