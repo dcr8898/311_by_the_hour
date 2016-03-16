@@ -39,9 +39,7 @@ $(function () {
             }]
         },
         yAxis: {
-            title: {
-                text: 'Fruit units'
-            }
+            visible: false
         },
         tooltip: {
             enabled: false
