@@ -28,12 +28,7 @@ $(function () {
                 'Friday',
                 'Saturday',
                 'Sunday'
-            ],
-            plotBands: [{ // visualize the weekend
-                from: 4.5,
-                to: 6.5,
-                color: 'rgba(68, 170, 213, .2)'
-            }]
+            ]
         },
         yAxis: {
             visible: false
