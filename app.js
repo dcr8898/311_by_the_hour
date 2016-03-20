@@ -21,14 +21,30 @@ $(function () {
         },
         xAxis: {
             categories: [
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday',
-                'Sunday'
-            ]
+                '12 AM', '01 AM', '02 AM', '03 AM', '04 AM', '05 AM', '06 AM',
+                '07 AM', '08 AM', '09 AM', '10 AM', '11 AM', '12 PM', '01 PM',
+                '02 PM', '03 PM', '04 PM', '05 PM', '06 PM', '07 PM', '08 PM',
+                '09 PM', '10 PM', '11 PM', '12 AM'
+            ],
+            labels: {
+                formatter: function() {
+                    switch(this.value.slice(0,2)) {
+                        case '01':  return '&#x1f550';
+                        case '02':  return '&#x1f551';
+                        case '03':  return '&#x1f552';
+                        case '04':  return '&#x1f553';
+                        case '05':  return '&#x1f554';
+                        case '06':  return '&#x1f555';
+                        case '07':  return '&#x1f556';
+                        case '08':  return '&#x1f557';
+                        case '09':  return '&#x1f558';
+                        case '10':  return '&#x1f559';
+                        case '11':  return '&#x1f55a';
+                        case '12':  return '&#x1f55b';
+                    }
+                },
+                useHTML: true
+            }
         },
         yAxis: {
             visible: false
