@@ -44,7 +44,8 @@ $(function () {
                     }
                 },
                 useHTML: true
-            }
+            },
+            gridLineWidth: 1
         },
         yAxis: {
             visible: false
