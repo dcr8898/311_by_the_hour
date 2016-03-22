@@ -29,18 +29,18 @@ $(function () {
             labels: {
                 formatter: function() {
                     switch(this.value.slice(0,2)) {
-                        case '01':  return '&#x1f550';
-                        case '02':  return '&#x1f551';
-                        case '03':  return '&#x1f552';
-                        case '04':  return '&#x1f553';
-                        case '05':  return '&#x1f554';
-                        case '06':  return '&#x1f555';
-                        case '07':  return '&#x1f556';
-                        case '08':  return '&#x1f557';
-                        case '09':  return '&#x1f558';
-                        case '10':  return '&#x1f559';
-                        case '11':  return '&#x1f55a';
-                        case '12':  return '&#x1f55b';
+                        case '01':  return '<h1>&#x1f550</h1>';
+                        case '02':  return '<h1>&#x1f551</h1>';
+                        case '03':  return '<h1>&#x1f552</h1>';
+                        case '04':  return '<h1>&#x1f553</h1>';
+                        case '05':  return '<h1>&#x1f554</h1>';
+                        case '06':  return '<h1>&#x1f555</h1>';
+                        case '07':  return '<h1>&#x1f556</h1>';
+                        case '08':  return '<h1>&#x1f557</h1>';
+                        case '09':  return '<h1>&#x1f558</h1>';
+                        case '10':  return '<h1>&#x1f559</h1>';
+                        case '11':  return '<h1>&#x1f55a</h1>';
+                        case '12':  return '<h1>&#x1f55b</h1>';
                     }
                 },
                 useHTML: true
