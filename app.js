@@ -4,9 +4,9 @@ $(function () {
             type: 'areaspline'
         },
         colors: [
-            '#abf19d',
-            '#9cc7f0',
-            '#f8b984',
+            '#2b908f',
+            '#90ee7e',
+            '#f45b5b',
             'rgba(0,0,0,0)'
         ],
         title: {
