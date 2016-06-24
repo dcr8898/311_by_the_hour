@@ -28,7 +28,7 @@ $(function () {
             verticalAlign: 'bottom',
             itemWidth: 220,
             borderWidth: 1,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+            backgroundColor: (Highcharts.theme.legendBackgroundColor)
         },
         xAxis: {
             categories: [
