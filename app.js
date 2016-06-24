@@ -6,6 +6,22 @@ $(function () {
         title: {
             text: '311 by the Hour'
         },
+        subtitle: {
+            text: "A visual exploration of NYC 311 call data by complaint type "
+                + "and the hour of the day in which calls were placed for the "
+                + "week ending <input type='date' id='datepicker' "
+                + "value='2010-08-03' readonly><br/>(Inspired by<a "
+                + "href='http://www.wired.com/2010/11/ff_311_new_york/all/1' "
+                + "target='_blank'>this</a>. See the <a "
+                + "href='https://github.com/dcr8898/311_by_the_hour' "
+                + "target='_blank'>>Source code</a>.)",
+            useHTML: true,
+            style: {
+                color: '#ffffff',
+                'text-align': 'center',
+                'font-size': '1em'
+            }
+        },
         legend: {
             layout: 'horizontal',
             align: 'center',
@@ -19,7 +35,7 @@ $(function () {
                 '12 AM', '01 AM', '02 AM', '03 AM', '04 AM', '05 AM', '06 AM',
                 '07 AM', '08 AM', '09 AM', '10 AM', '11 AM', '12 PM', '01 PM',
                 '02 PM', '03 PM', '04 PM', '05 PM', '06 PM', '07 PM', '08 PM',
-                '09 PM', '10 PM', '11 PM', '12 AM'
+                '09 PM', '10 PM', '11 PM'
             ],
             labels: {
                 formatter: function() {
@@ -103,6 +119,15 @@ $(function () {
             series.push(dummyOffset);
             options.series = series;
             $('#container').highcharts(options);
+            $('#datepicker').datepicker({
+                    autoSize: true,
+                    changeMonth: true,
+              changeYear: true,
+              dateFormat: 'yy-mm-dd',
+              minDate: '2010-01-07',
+              maxDate: -1
+            });
+
         }
     );
 });
