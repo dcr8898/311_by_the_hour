@@ -1,3 +1,28 @@
+/*
+ * View
+ */
+(function (window) {
+    'use strict';
+
+})();
+
+/*
+ * Model
+ */
+(function (window) {
+    'use strict';
+
+})();
+
+/*
+ * App
+ */
+(function (window) {
+    'use strict';
+
+})();
+
+
 $(function () {
     var options = {
         chart: {
