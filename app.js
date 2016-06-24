@@ -1,3 +1,5 @@
+// global app
+
 /*
  * View
  */
@@ -20,6 +22,18 @@
 (function (window) {
     'use strict';
 
+    var threeOneOne = Object.create(null);
+
+    threeOneOne.view = Object.create(app.view);
+    threeOneOne.model = Object.create(app.model);
+    threeOneOne.view.init('container');
+    threeOneOne.model.init();
+
+    $(function() {
+        threeOneOne.initChart();
+        $('#datepicker').change(threeOneOne.view.update);
+        $('#datepicker').change();
+    });
 })();
 
 
