@@ -11,3 +11,15 @@ body, #container {
   min-width: 640px;
   min-height: 480px;
 }
+
+a {
+  color: #ff7302;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffa902;
+}
