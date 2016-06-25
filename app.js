@@ -10,11 +10,11 @@ $(function () {
             text: "A visual exploration of NYC 311 call data by complaint type "
                 + "and the hour of the day in which calls were placed for the "
                 + "week ending <input id='datepicker' type='date' "
-                + "value='2010-08-03' min='2010-01-01'><br/>(Inspired by<a "
+                + "value='2010-08-03' min='2010-01-01'><br/>(Inspired by <a "
                 + "href='http://www.wired.com/2010/11/ff_311_new_york/all/1' "
                 + "target='_blank'>this</a>. See the <a "
                 + "href='https://github.com/dcr8898/311_by_the_hour' "
-                + "target='_blank'>>Source code</a>.)",
+                + "target='_blank'>Source code</a>.)",
             useHTML: true,
             style: {
                 color: '#ffffff',
