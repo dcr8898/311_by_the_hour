@@ -1,0 +1,13 @@
+html, body, #container {
+  height: 100%;
+}
+
+body, #container {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  min-width: 640px;
+  min-height: 480px;
+}
