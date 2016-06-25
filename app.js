@@ -9,8 +9,8 @@ $(function () {
         subtitle: {
             text: "A visual exploration of NYC 311 call data by complaint type "
                 + "and the hour of the day in which calls were placed for the "
-                + "week ending <input type='date' id='datepicker' "
-                + "value='2010-08-03' readonly><br/>(Inspired by<a "
+                + "week ending <input id='datepicker' type='date' "
+                + "value='2010-08-03' min='2010-01-01'><br/>(Inspired by<a "
                 + "href='http://www.wired.com/2010/11/ff_311_new_york/all/1' "
                 + "target='_blank'>this</a>. See the <a "
                 + "href='https://github.com/dcr8898/311_by_the_hour' "
@@ -119,15 +119,6 @@ $(function () {
             series.push(dummyOffset);
             options.series = series;
             $('#container').highcharts(options);
-            $('#datepicker').datepicker({
-                    autoSize: true,
-                    changeMonth: true,
-              changeYear: true,
-              dateFormat: 'yy-mm-dd',
-              minDate: '2010-01-07',
-              maxDate: -1
-            });
-
         }
     );
 });
