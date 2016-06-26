@@ -468,7 +468,6 @@ var app = {};
 
         init = function init(appView) {
             view = appView;
-            console.log(view);
         },
 
         getDataForWeekEnding = function getDataForWeekEnding(date) {
@@ -519,8 +518,3 @@ var app = {};
         // $('#datepicker').change();
     });
 })();
-
-// $(function () {
-
-// });
-
