@@ -11,6 +11,11 @@ var app = {};
 
         chart = {},
 
+        // Return local date per ISO8601 ('2016-06-28')
+        dateNow = function dateNow() {
+            return new Date().toLocaleDateString('lt-Latn');
+        },
+
         options = {
             chart: {
                 type: 'areaspline'
@@ -19,15 +24,16 @@ var app = {};
                 text: '311 by the Hour'
             },
             subtitle: {
-                text: "NYC 311 calls by complaint type and the hour of day "
-                    + " in which calls were placed for the week ending "
-                    + "<input id='date-select' type='date' value='2010-08-03' "
-                    + "placeholder='yyyy-mm-dd' min='2010-01-01'><br/>"
-                    + "[Inspired by <a href="
-                    + "'http://www.wired.com/2010/11/ff_311_new_york/all/1' "
-                    + "target='_blank'>this</a>. See the <a "
-                    + "href='https://github.com/dcr8898/311_by_the_hour' "
-                    + "target='_blank'>Source code</a>.]",
+                text: "NYC 311 calls by complaint type and the hour of day " +
+                    " in which calls were placed for the week ending " +
+                     "<input id='date-select' type='date' value='2010-08-03' " +
+                     "placeholder='yyyy-mm-dd' min='2010-01-01' " +
+                     "max='" + dateNow() + "'><br/>" +
+                     "[Inspired by <a href=" +
+                     "'http://www.wired.com/2010/11/ff_311_new_york/all/1' " +
+                     "target='_blank'>this</a>. See the <a " +
+                     "href='https://github.com/dcr8898/311_by_the_hour' " +
+                     "target='_blank'>Source code</a>.]",
                 useHTML: true,
                 style: {
                     color: '#ffffff',
@@ -108,7 +114,7 @@ var app = {};
             }
             var dateObj = new Date(date),
                 minDate = new Date('2010-01-01'),
-                maxDate = Date.now()
+                maxDate = Date.now() - (dateObj.getTimezoneOffset() * 60000);
             if (dateObj == 'Invalid Date') { return false; }
             if (dateObj < minDate || dateObj > maxDate) { return false; }
             return true;
@@ -129,8 +135,8 @@ var app = {};
                 model.getDataForWeekEnding(submittedDate);
             } else {
                 alert(
-                    "Please enter a valid date from 2010-01-01 through today "
-                    + "in the form yyyy-m-d."
+                    "Please enter a valid date from 2010-01-01 through today " +
+                    "in the form yyyy-m-d."
                 );
                 this.focus();
             }
@@ -503,7 +509,7 @@ var app = {};
         // '.indexOf()' 35,000 times for every result set. :)
         categoryIndexMap = categories.reduce(function(indexes, category, i) {
             indexes[category] = i;
-            return indexes
+            return indexes;
         }, {}),
 
         init = function init(appView) {
@@ -518,7 +524,7 @@ var app = {};
                             var category = categoriesMap[complaint['complaint_type']];
                             var hour = parseInt(complaint['created_date'].slice(11, 13));
                             var index = categoryIndexMap[category];
-                            series[index].data[hour]++;
+                            returnDataSeries[index].data[hour]++;
                             dummyOffsetSeries.data[hour]++;
                         }
                     });
