@@ -103,6 +103,14 @@ var app = {};
         },
 
         validDate = function(date) {
+            if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) {
+                return false;
+            }
+            var dateObj = new Date(date),
+                minDate = new Date('2010-01-01'),
+                maxDate = Date.now()
+            if (dateObj == 'Invalid Date') { return false; }
+            if (dateObj < minDate || dateObj > maxDate) { return false; }
             return true;
         },
 
@@ -122,7 +130,7 @@ var app = {};
             } else {
                 alert(
                     "Please enter a valid date from 2010-01-01 through today "
-                    + "in the form yyyy-mm-dd."
+                    + "in the form yyyy-m-d."
                 );
                 this.focus();
             }
