@@ -123,11 +123,16 @@ var app = {};
 
     var view = {},
 
+        // Each data series will consist of 24 data points.
         emptySeriesData = [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
         ],
 
+        // Categories used for chart.  The order of this array dictates the
+        // order they will be displayed in the chart.  Order was calculated
+        // manually for maximum visual interest (basically fatter stuff in the
+        // middle).
         categories = [
             'Graffiti',
             'Homeless & Homeless Services',
@@ -157,7 +162,9 @@ var app = {};
             'Sidewalk Conditions'
         ],
 
-        // Map all complaint types to a category
+        // Manually created map that summarizes all of the data source's native
+        // complaint_types to a more manageable number of categories for
+        // charting.
         categoriesMap = {
             "Derelict Bicycle":"Abandoned Vehicles",
             "Derelict Vehicle":"Abandoned Vehicles",
@@ -444,6 +451,7 @@ var app = {};
             "Water System":"Water Maintenance"
         },
 
+        // Array of data series skeletons.
         returnDataSeries = categories.map(function(category) {
             return {
                 name: category,
@@ -451,6 +459,7 @@ var app = {};
             };
         }),
 
+        // This data series will be used to create the floating area effect.
         dummyOffsetSeries = {
             data: [].concat(emptySeriesData),
             showInLegend: false,
