@@ -199,9 +199,9 @@ var app = {};
             'Sidewalk Conditions'
         ],
 
-        // Manually created map that summarizes all of the data source's native
-        // complaint_types to a more manageable number of categories for
-        // charting.
+        // Manually created map to aggregate the data source's native
+        // complaint_types (283 as of this writing) to a more manageable number
+        // of categories (see categories above).
         categoriesMap = {
             "Derelict Bicycle":"Abandoned Vehicles",
             "Derelict Vehicle":"Abandoned Vehicles",
