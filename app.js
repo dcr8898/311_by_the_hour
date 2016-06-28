@@ -9,6 +9,8 @@ var app = {};
 
     var model = {},
 
+        chart = {},
+
         options = {
             chart: {
                 type: 'areaspline'
@@ -99,17 +101,34 @@ var app = {};
 
         },
 
+        validDate = function(date) {
+            return true;
+        },
+
         init = function init(appModel) {
             model = appModel;
         },
 
-        drawChart = function drawChart(container) {
-            $('#' + container).highcharts(options);
+        initChart = function initChart(container) {
+            // create chart and return a reference to it
+            chart = $('#' + container).highcharts(options).highcharts();
+        },
+
+        updateChart = function updateChart() {
+            var submittedDate = this.value;
+            if(validDate(submittedDate)) {
+                model.getDataForWeekEnding(submittedDate);
+            } else {
+                alert("Please enter a valid date from 2010-01-01 through today.")
+                this.focus()
+            }
+
         },
 
         api = {
             init: init,
-            drawChart: drawChart
+            initChart: initChart,
+            updateChart: updateChart
         };
 
     app.view = api;
@@ -488,7 +507,7 @@ var app = {};
                             var hour = parseInt(complaint['created_date'].slice(11, 13));
                             var index = categoryIndexMap[category];
                             series[index].data[hour]++;
-                            dummyOffset.data[hour]++;
+                            dummyOffsetSeries.data[hour]++;
                         }
                     });
                     max = Math.max.apply(null, dummyOffset.data) * 1.2;
@@ -522,8 +541,8 @@ var app = {};
     threeOneOne.model.init(threeOneOne.view);
 
     $(function() {
-        threeOneOne.view.drawChart('container');
-        // $('#datepicker').change(threeOneOne.view.update);
-        // $('#datepicker').change();
+        threeOneOne.view.initChart('container');
+        $('#date-select').change(threeOneOne.view.updateChart);
+        $('#date-select').change();
     });
 })();
