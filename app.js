@@ -120,8 +120,11 @@ var app = {};
             if(validDate(submittedDate)) {
                 model.getDataForWeekEnding(submittedDate);
             } else {
-                alert("Please enter a valid date from 2010-01-01 through today.")
-                this.focus()
+                alert(
+                    "Please enter a valid date from 2010-01-01 through today "
+                    + "in the form yyyy-mm-dd."
+                );
+                this.focus();
             }
 
         },
