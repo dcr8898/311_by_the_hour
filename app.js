@@ -129,6 +129,10 @@ var app = {};
             chart = $('#' + container).highcharts(options).highcharts();
         },
 
+        showMessage = function showMessage(message) {
+            chart.showLoading(message);
+        },
+
         updateChart = function updateChart() {
             var submittedDate = this.value;
             if(validDate(submittedDate)) {
@@ -146,6 +150,7 @@ var app = {};
         api = {
             init: init,
             initChart: initChart,
+            showMessage: showMessage,
             updateChart: updateChart
         };
 
