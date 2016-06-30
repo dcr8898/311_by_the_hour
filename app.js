@@ -133,6 +133,10 @@ var app = {};
             chart.showLoading(message);
         },
 
+        hideMessage = function hideMessage() {
+            chart.hideLoading();
+        },
+
         updateChart = function updateChart() {
             var submittedDate = this.value;
             if(validDate(submittedDate)) {
@@ -151,6 +155,7 @@ var app = {};
             init: init,
             initChart: initChart,
             showMessage: showMessage,
+            hideMessage: hideMessage,
             updateChart: updateChart
         };
 
