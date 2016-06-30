@@ -137,7 +137,7 @@ var app = {};
             chart.hideLoading();
         },
 
-        updateChart = function updateChart() {
+        getData = function getData() {
             var submittedDate = this.value;
             if(validDate(submittedDate)) {
                 model.getDataForWeekEnding(submittedDate);
@@ -156,7 +156,7 @@ var app = {};
             initChart: initChart,
             showMessage: showMessage,
             hideMessage: hideMessage,
-            updateChart: updateChart
+            getData: getData
         };
 
     app.view = api;
@@ -570,7 +570,7 @@ var app = {};
 
     $(function() {
         threeOneOne.view.initChart('container');
-        $('#date-select').change(threeOneOne.view.updateChart);
+        $('#date-select').change(threeOneOne.view.getData);
         $('#date-select').change();
     });
 })();
