@@ -151,12 +151,18 @@ var app = {};
 
         },
 
+        updateChart = function updateChart(dataSeries) {
+            refreshDataSeries(dataSeries);
+            chart.redraw();
+        },
+
         api = {
             init: init,
             initChart: initChart,
             showMessage: showMessage,
             hideMessage: hideMessage,
-            getData: getData
+            getData: getData,
+            updateChart: updateChart
         };
 
     app.view = api;
