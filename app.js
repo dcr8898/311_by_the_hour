@@ -109,14 +109,19 @@ var app = {};
         },
 
         validDate = function(date) {
-            if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) {
-                return false;
-            }
-            var dateObj = new Date(date),
-                minDate = new Date('2010-01-01'),
-                maxDate = Date.now() - (dateObj.getTimezoneOffset() * 60000);
+            // Check format
+            if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) { return false; }
+
+            // Check for valid date
+            var dateObj = new Date(date);
             if (dateObj == 'Invalid Date') { return false; }
+
+            // Check for valid date range (2010-01-01 to present)
+            var minDate = new Date('2010-01-01'),
+                maxDate = Date.now() - (dateObj.getTimezoneOffset() * 60000);
             if (dateObj < minDate || dateObj > maxDate) { return false; }
+
+            // All good
             return true;
         },
 
