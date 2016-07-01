@@ -571,7 +571,6 @@ var app = {};
         },
 
         parseData = function parseData() {
-            view.hideMessage();
             view.showMessage("Parsing data . . .");
         },
 
@@ -580,7 +579,7 @@ var app = {};
         },
 
         getDataForWeekEnding = function getDataForWeekEnding(date) {
-            view.showMessage("Loading data . . .");
+            view.showMessage("Requesting 311 call data . . .");
             var resourceURI = dataResourceURL + queryString(date);
             $.getJSON(resourceURI)
                 .done(parseData)
