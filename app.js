@@ -21,20 +21,11 @@ var app = {};
                 type: 'areaspline'
             },
             title: {
-                text: '311 by the Hour'
-            },
-            subtitle: {
-                text: "NYC 311 calls by complaint type and the hour of day " +
-                    " in which calls were placed for the week ending " +
+                text: "<strong>311 by the Hour</strong> for the week ending " +
                      "<input id='date-select' type='date' value='2010-08-03' " +
                      "placeholder='yyyy-mm-dd' min='2010-01-01' " +
                      "max='" + dateNow() + "'>",
-                useHTML: true,
-                style: {
-                    color: '#ffffff',
-                    'text-align': 'center',
-                    'font-size': '1em'
-                }
+                useHTML: true
             },
             legend: {
                 layout: 'horizontal',
