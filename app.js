@@ -583,7 +583,7 @@ var app = {};
         // maxChartHeight is set higher than maxDataHeight to prevent the chart
         // from touching the x-axis.
         calculateOffset = function calculateOffset(offsetData) {
-            var maxDataHeight = Math.max.apply(null, OffsetData),
+            var maxDataHeight = Math.max.apply(null, offsetData),
                 maxChartHeight = maxDataHeight * 1.2;
 
             return offsetData.map(function(hourlyDataHeight) {
