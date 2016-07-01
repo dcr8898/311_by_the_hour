@@ -590,8 +590,8 @@ var app = {};
         parseData = function parseData(callData) {
             view.showMessage("Parsing data . . .");
 
-            var dataSeries = emptyDataSeries,
-                dummyOffset = emptyOffsetSeries;
+            var dataSeries = emptyDataSeries(categories),
+                dummyOffset = emptyOffsetSeries();
 
             callData.forEach(function(complaint) {
                 var category = getCategory(complaint.complaint_type),
