@@ -539,21 +539,26 @@ var app = {};
             return indexes;
         }, {}),
 
+        oneDay = 24 * 60 * 60 * 1000,
+
+        startDate = function startDate(datetime) {
+            var startDate = new Date(datetime - (oneDay * 6));
+            return startDate.toJSON().slice(0,-1);
+        },
+
+        endDate = function endDate(datetime) {
+            var endDate = new Date(dateObj + oneDay);
+            return endDate.toJSON().slice(0,-1);
+        },
+
         dataResourceURL = "https://data.cityofnewyork.us/resource/fhrw-4uyv.json",
 
         queryString = function queryString(date) {
-            var dateObj = new Date(date),
-                oneDay = 24 * 60 * 60 * 1000,
-                minDateObj = new Date(dateObj - (oneDay * 6)),
-                minDate = minDateObj.toJSON().slice(0,-1),
-                maxDateObj = new Date(dateObj + oneDay),
-                maxDate = maxDateObj.toJSON().slice(0,-1),
-
-
+            var datetime = new Date(date),
                 selectClause = "$select=complaint_type, created_date, " +
                     "date_trunc_ymd(created_date) as date",
-                whereClause = "&$where= date >= '" + minDate + "' AND " +
-                    "date < '" + maxDate + "'",
+                whereClause = "&$where= date >= '" + startDate(datetime) +
+                    "' AND " + "date < '" + endDate(datetime) + "'",
                 limitClause = "&$limit=100000";
 
             return "?" + [selectClause, whereClause, limitClause].join('&');
