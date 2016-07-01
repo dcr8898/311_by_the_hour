@@ -120,6 +120,12 @@ var app = {};
             return true;
         },
 
+        refreshDataSeries = function refreshDataSeries(dataSeries) {
+            chart.series.forEach(function(chartDataSeries, i) {
+                chartDataSeries.setData(dataSeries[i], false);
+            });
+        },
+
         init = function init(appModel) {
             model = appModel;
         },
