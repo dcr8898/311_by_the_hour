@@ -570,6 +570,11 @@ var app = {};
             alert("Unable to obtain call data:\n" + errorText);
         },
 
+        parseData = function parseData() {
+            view.hideMessage();
+            view.showMessage("Parsing data . . .");
+        },
+
         init = function init(appView) {
             view = appView;
         },
