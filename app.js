@@ -515,8 +515,8 @@ var app = {};
             "Water System":"Water Maintenance"
         },
 
-        // Array of data series skeletons.
-        emptyDataSeries = categories.map(function(category) {
+        // Array of data series, initially with empty data points.
+        dataSeries = categories.map(function(category) {
             return {
                 name: category,
                 data: [].concat(emptyDataPoints)
@@ -525,7 +525,7 @@ var app = {};
 
         // This data series will be used to create the floating area effect.
         dummyOffsetSeries = {
-            data: [].concat(emptySeriesData),
+            data: [].concat(emptyDataPoints),
             showInLegend: false,
             fillColor: 'rgba(0,0,0,0)'
         },
@@ -542,12 +542,12 @@ var app = {};
         oneDay = 24 * 60 * 60 * 1000,
 
         startDate = function startDate(datetime) {
-            var startDate = new Date(datetime - (oneDay * 6));
+            var startDate = new Date(datetime.getTime() - (oneDay * 6));
             return startDate.toJSON().slice(0,-1);
         },
 
         endDate = function endDate(datetime) {
-            var endDate = new Date(dateObj + oneDay);
+            var endDate = new Date(datetime.getTime() + oneDay);
             return endDate.toJSON().slice(0,-1);
         },
 
