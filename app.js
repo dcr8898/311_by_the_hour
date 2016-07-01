@@ -580,6 +580,17 @@ var app = {};
             return category;
         },
 
+        // maxChartHeight is set higher than maxDataHeight to prevent the chart
+        // from touching the x-axis.
+        calculateOffset = function calculateOffset(offsetData) {
+            var maxDataHeight = Math.max.apply(null, OffsetData),
+                maxChartHeight = maxDataHeight * 1.2;
+
+            return offsetData.map(function(hourlyDataHeight) {
+                return (maxChartHeight - hourlyDataHeight) / 2.0;
+            });
+        },
+
         dataResourceError = function dataResourceError(jqxhr, status, error) {
             view.hideMessage();
             var errorText = status + "," + error;
