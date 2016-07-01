@@ -564,6 +564,12 @@ var app = {};
             return "?" + [selectClause, whereClause, limitClause].join('&');
         },
 
+        dataResourceError = function dataResourceError(jqxhr, status, error) {
+            view.hideMessage();
+            var errorText = status + "," + error;
+            alert("Unable to obtain call data:\n" + errorText);
+        },
+
         init = function init(appView) {
             view = appView;
         },
