@@ -126,8 +126,16 @@ var app = {};
         },
 
         refreshDataSeries = function refreshDataSeries(dataSeries) {
-            chart.series.forEach(function(chartDataSeries, i) {
-                chartDataSeries.setData(dataSeries[i], false);
+            // remove 'no data' series, if present
+            if (chart.series.length == 1) { chart.series = []; }
+
+            // Update series data if series exists, otherwise add series
+            dataSeries.forEach(function(newDataSeries, i) {
+                if (typeof chart.series[i] === "undefined") {
+                    chart.addSeries(newDataSeries, false);
+                } else {
+                    chart.series[i].setData(newDataSeries.data, false);
+                }
             });
         },
 
