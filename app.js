@@ -188,7 +188,7 @@ var app = {};
     var view = {},
 
         // Each data series will consist of 24 data points.
-        emptySeriesData = [
+        emptyDataPoints = [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
         ],
@@ -516,10 +516,10 @@ var app = {};
         },
 
         // Array of data series skeletons.
-        returnDataSeries = categories.map(function(category) {
+        emptyDataSeries = categories.map(function(category) {
             return {
                 name: category,
-                data: [].concat(emptySeriesData)
+                data: [].concat(emptyDataPoints)
             };
         }),
 
@@ -539,12 +539,32 @@ var app = {};
             return indexes;
         }, {}),
 
+        dataResourceURL = "https://data.cityofnewyork.us/resource/fhrw-4uyv.json",
+
+        queryString = function queryString(date) {
+            var dateObj = new Date(date),
+                oneDay = 24 * 60 * 60 * 1000,
+                minDateObj = new Date(dateObj - (oneDay * 6)),
+                minDate = minDateObj.toJSON().slice(0,-1),
+                maxDateObj = new Date(dateObj + oneDay),
+                maxDate = maxDateObj.toJSON().slice(0,-1),
+
+
+                selectClause = "$select=complaint_type, created_date, " +
+                    "date_trunc_ymd(created_date) as date",
+                whereClause = "&$where= date >= '" + minDate + "' AND " +
+                    "date < '" + maxDate + "'",
+                limitClause = "&$limit=100000";
+
+            return "?" + [selectClause, whereClause, limitClause].join('&');
+        },
+
         init = function init(appView) {
             view = appView;
         },
 
         getDataForWeekEnding = function getDataForWeekEnding(date) {
-            $.getJSON("https://data.cityofnewyork.us/resource/fhrw-4uyv.json?$select=complaint_type, created_date, date_trunc_ymd(created_date) as date&$where= date >= '2015-07-28T00:00:00.000' AND date < '2015-08-04T00:00:00.000'&$limit=100000",
+            $.getJSON(,
                 function (response) {
                     response.forEach(function(complaint) {
                         if(complaint['created_date'].slice(11) != "00:00:00.000") {
