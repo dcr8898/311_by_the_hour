@@ -612,11 +612,14 @@ var app = {};
                 dummyOffset = emptyOffsetSeries();
 
             callData.forEach(function(complaint) {
-                var category = getCategory(complaint.complaint_type),
-                    hour = parseInt(complaint.created_date.slice(11, 13)),
-                    index = categoryIndexMap[category];
-                dataSeries[index].data[hour]++;
-                dummyOffset.data[hour]++;
+                // unfortunately we must discard calls with invalid timestamps
+                if(complaint.created_date.slice(11) != "00:00:00.000") {
+                    var category = getCategory(complaint.complaint_type),
+                        hour = parseInt(complaint.created_date.slice(11, 13)),
+                        index = categoryIndexMap[category];
+                    dataSeries[index].data[hour]++;
+                    dummyOffset.data[hour]++;
+                }
             });
 
             dummyOffset.data = calculateOffset(dummyOffset.data);
