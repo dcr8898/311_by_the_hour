@@ -516,12 +516,14 @@ var app = {};
         },
 
         // Array of data series, initially with empty data points.
-        dataSeries = categories.map(function(category) {
-            return {
-                name: category,
-                data: [].concat(emptyDataPoints)
-            };
-        }),
+        emptyDataSeries = function emptyDataSeries(categories) {
+            return categories.map(function(category) {
+                return {
+                    name: category,
+                    data: [].concat(emptyDataPoints)
+                };
+            });
+        },
 
         // This data series will be used to create the floating area effect.
         dummyOffsetSeries = {
@@ -570,8 +572,9 @@ var app = {};
             alert("Unable to obtain call data:\n" + errorText);
         },
 
-        parseData = function parseData() {
+        parseData = function parseData(callData) {
             view.showMessage("Parsing data . . .");
+
         },
 
         init = function init(appView) {
