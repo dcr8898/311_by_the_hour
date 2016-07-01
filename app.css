@@ -1,0 +1,29 @@
+html, body, #container {
+  height: 100%;
+}
+
+body, #container {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  min-width: 640px;
+  min-height: 480px;
+}
+
+a {
+  color: #ff7302;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffa902;
+}
+
+#date-select {
+  width: 130px;
+}
