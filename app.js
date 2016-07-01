@@ -16,6 +16,18 @@ var app = {};
             return new Date().toLocaleDateString('lt-Latn');
         },
 
+        getClockFace = function getClockFace() {
+            var clockFaces = [
+                    '&#x1f55b', '&#x1f550', '&#x1f551', '&#x1f552',
+                    '&#x1f553', '&#x1f554', '&#x1f555', '&#x1f556',
+                    '&#x1f557', '&#x1f558', '&#x1f559', '&#x1f55a'
+                ],
+                hour = parseInt(this.value.slice(0,2)),
+                face = clockFaces[hour % 12];
+
+                return '<h1>' + face + '</h1>';
+        },
+
         options = {
             chart: {
                 type: 'areaspline'
@@ -43,22 +55,7 @@ var app = {};
                     '06 PM', '07 PM', '08 PM', '09 PM', '10 PM', '11 PM'
                 ],
                 labels: {
-                    formatter: function() {
-                        switch(this.value.slice(0,2)) {
-                            case '01':  return '<h1>&#x1f550</h1>';
-                            case '02':  return '<h1>&#x1f551</h1>';
-                            case '03':  return '<h1>&#x1f552</h1>';
-                            case '04':  return '<h1>&#x1f553</h1>';
-                            case '05':  return '<h1>&#x1f554</h1>';
-                            case '06':  return '<h1>&#x1f555</h1>';
-                            case '07':  return '<h1>&#x1f556</h1>';
-                            case '08':  return '<h1>&#x1f557</h1>';
-                            case '09':  return '<h1>&#x1f558</h1>';
-                            case '10':  return '<h1>&#x1f559</h1>';
-                            case '11':  return '<h1>&#x1f55a</h1>';
-                            case '12':  return '<h1>&#x1f55b</h1>';
-                        }
-                    },
+                    formatter: getClockFace,
                     useHTML: true
                 },
                 tickmarkPlacement: 'on',
