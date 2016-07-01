@@ -568,6 +568,19 @@ var app = {};
             return "?" + [selectClause, whereClause, limitClause].join('&');
         },
 
+        // Since new complaint_types can be added at any time without our
+        // knowledge, any unknown complaint_types are mapped to
+        // "Other/Miscellaneous"
+        getCategory = function getCategory(complaintType) {
+            category = categoriesMap[complaintType];
+
+            if(typeof category === "undefined") {
+                category = "Other/Miscellaneous"
+            }
+
+            return category;
+        },
+
         dataResourceError = function dataResourceError(jqxhr, status, error) {
             view.hideMessage();
             var errorText = status + "," + error;
