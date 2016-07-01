@@ -526,10 +526,12 @@ var app = {};
         },
 
         // This data series will be used to create the floating area effect.
-        dummyOffsetSeries = {
-            data: [].concat(emptyDataPoints),
-            showInLegend: false,
-            fillColor: 'rgba(0,0,0,0)'
+        emptyOffsetSeries = function emptyOffsetSeries() {
+            return {
+                data: [].concat(emptyDataPoints),
+                showInLegend: false,
+                fillColor: 'rgba(0,0,0,0)'
+            };
         },
 
         // Object literal that inverts the key (index)/value pairs of the
@@ -575,6 +577,22 @@ var app = {};
         parseData = function parseData(callData) {
             view.showMessage("Parsing data . . .");
 
+            var dataSeries = emptyDataSeries,
+                dummyOffset = emptyOffsetSeries;
+
+            callData.forEach(function(complaint) {
+                var category = getCategory(complaint.complaint_type),
+                    hour = parseInt(complaint.created_date.slice(11, 13));
+                    index = categoryIndexMap[category];
+                dataSeries[index].data[hour]++;
+                dummyOffset.data[hour]++;
+            });
+
+            dummyOffset.data = calculateOffset(dummyOffset.data);
+            dataSeries.push(dummyOffset);
+
+            view.hideMessage;
+            view.updateChart(dataSeries);
         },
 
         init = function init(appView) {
