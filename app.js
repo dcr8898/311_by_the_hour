@@ -640,24 +640,6 @@ var app = {};
                 .done(parseData)
                 .fail(dataResourceError);
         },
-            // $.getJSON(,
-            //     function (response) {
-            //         response.forEach(function(complaint) {
-            //             if(complaint['created_date'].slice(11) != "00:00:00.000") {
-            //                 var category = categoriesMap[complaint['complaint_type']];
-            //                 var hour = parseInt(complaint['created_date'].slice(11, 13));
-            //                 var index = categoryIndexMap[category];
-            //                 returnDataSeries[index].data[hour]++;
-            //                 dummyOffsetSeries.data[hour]++;
-            //             }
-            //         });
-            //         max = Math.max.apply(null, dummyOffset.data) * 1.2;
-            //         dummyOffset.data = dummyOffset.data.map(function(datum) { return (max - datum) / 2.0 });
-            //         series.push(dummyOffsetSeries);
-            //         options.series = series;
-            //         $('#container').highcharts(options);
-            //     }
-            // );
 
         api = {
           init: init,
