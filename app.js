@@ -614,7 +614,7 @@ var app = {};
             dummyOffset.data = calculateOffset(dummyOffset.data);
             dataSeries.push(dummyOffset);
 
-            view.hideMessage;
+            view.hideMessage();
             view.updateChart(dataSeries);
         },
 
