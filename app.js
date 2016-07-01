@@ -127,7 +127,7 @@ var app = {};
 
         refreshDataSeries = function refreshDataSeries(dataSeries) {
             // remove 'no data' series, if present
-            if (chart.series.length == 1) { chart.series = []; }
+            if (chart.series.length == 1) { chart.series[0].remove(); }
 
             // Update series data if series exists, otherwise add series
             dataSeries.forEach(function(newDataSeries, i) {
