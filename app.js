@@ -571,10 +571,10 @@ var app = {};
         // Since new complaint_types can be added at any time, any unknown
         // complaint_types are mapped to "Other/Miscellaneous"
         getCategory = function getCategory(complaintType) {
-            category = categoriesMap[complaintType];
+            var category = categoriesMap[complaintType];
 
             if(typeof category === "undefined") {
-                category = "Other/Miscellaneous"
+                category = "Other/Miscellaneous";
             }
 
             return category;
