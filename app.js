@@ -608,8 +608,9 @@ var app = {};
 
         dataResourceError = function dataResourceError(jqxhr, status, error) {
             view.hideMessage();
-            var errorText = status + "," + error;
-            alert("Unable to obtain call data:\n" + errorText);
+            var errorText = status + ", " + error;
+            alert("Unable to obtain 311 call data:\n\n'" + errorText +
+                "'\n\nPlease try again.");
         },
 
         parseData = function parseData(callData) {
