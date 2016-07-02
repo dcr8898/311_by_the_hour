@@ -70,6 +70,7 @@ var app = {};
                      "<input id='date-select' type='date' value='2010-08-03' " +
                      "placeholder='yyyy-mm-dd' min='2010-01-01' max='" +
                      dateNow() + "'>",
+                     margin: 5,
                 useHTML: true
             },
             legend: {
@@ -82,6 +83,7 @@ var app = {};
             },
             xAxis: [ xAxisConfigurator(false), xAxisConfigurator(true) ],
             yAxis: {
+                endOnTick: false,
                 maxPadding: 0,
                 visible: false
             },
