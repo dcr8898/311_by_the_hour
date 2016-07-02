@@ -686,6 +686,10 @@ var app = {};
 
     $(function() {
         threeOneOne.view.initChart('container');
+        // Highcharts blocks several event handlers, which makes interacting
+        // with input elements on the chart problematic, especially in Firefox.
+        // This click handler restores the ability to select the date input.
+        $('#date-select').click(function() { this.select() });
         $('#date-select').change(threeOneOne.view.getData);
         $('#date-select').change();
     });
