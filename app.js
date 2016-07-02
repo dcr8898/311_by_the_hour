@@ -645,7 +645,8 @@ var app = {};
         },
 
         getDataForWeekEnding = function getDataForWeekEnding(date) {
-            view.showMessage("Requesting 311 call data . . .");
+            view.showMessage("Requesting 311 call data . . . " +
+                "Sorry, this can take 30 seconds or so :(");
             var resourceURI = dataResourceURL + queryString(date);
             $.getJSON(resourceURI)
                 .done(parseData)
