@@ -67,6 +67,15 @@ var app = {};
             chart: {
                 type: 'areaspline'
             },
+
+            colors: [
+                '#bb005f', '#ff005e', '#00aeaa', '#afc5b9', '#f7ff00',
+                '#cf0021', '#beeb2c', '#00a5c1', '#ce0087', '#61cff5',
+                '#8b4ca9', '#00a3f2', '#ff006f', '#6b0090', '#69ca45',
+                '#009e52', '#ffd600', '#a00087', '#ff3ca5', '#e4001e',
+                '#ff9700', '#ecff00', '#1f48ab', '#a20057', '#009fa0',
+                '#dca9ef'
+            ],
             credits: {
                 text: 'Credits & Source Code',
                 href: 'https://github.com/dcr8898/311_by_the_hour',
