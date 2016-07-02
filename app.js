@@ -36,7 +36,7 @@ var app = {};
                 return face;
         },
 
-        xAxisConfigurator = function xAxisConfigurator(opposite) {
+        xAxisConfigurator = function xAxisConfigurator(opposite = false) {
             var axisConfig = {
                     categories: xAxisCategories,
                     gridLineWidth: 1,
