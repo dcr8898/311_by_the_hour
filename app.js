@@ -67,31 +67,6 @@ var app = {};
             chart: {
                 type: 'areaspline'
             },
-            title: {
-                text: "<strong>311 by the Hour</strong> for week ending " +
-                     "<input id='date-select' type='date' value='2010-08-03' " +
-                     "placeholder='yyyy-mm-dd' min='2010-01-01' max='" +
-                     dateNow() + "'>",
-                     margin: 5,
-                useHTML: true
-            },
-            legend: {
-                layout: 'horizontal',
-                align: 'center',
-                verticalAlign: 'bottom',
-                itemWidth: 220,
-                borderWidth: 1,
-                backgroundColor: (Highcharts.theme.legendBackgroundColor)
-            },
-            xAxis: [ xAxisConfigurator(false), xAxisConfigurator(true) ],
-            yAxis: {
-                endOnTick: false,
-                maxPadding: 0,
-                visible: false
-            },
-            tooltip: {
-                enabled: false
-            },
             credits: {
                 text: 'Credits & Source Code',
                 href: 'https://github.com/dcr8898/311_by_the_hour',
@@ -100,6 +75,14 @@ var app = {};
                     color: '#ff7302',
                     fontSize: '1em'
                 }
+            },
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom',
+                itemWidth: 220,
+                borderWidth: 1,
+                backgroundColor: (Highcharts.theme.legendBackgroundColor)
             },
             plotOptions: {
                 areaspline: {
@@ -115,10 +98,27 @@ var app = {};
                     }
                 }
             },
+            title: {
+                text: "<strong>311 by the Hour</strong> for week ending " +
+                     "<input id='date-select' type='date' value='2010-08-03' " +
+                     "placeholder='yyyy-mm-dd' min='2010-01-01' max='" +
+                     dateNow() + "'>",
+                     margin: 5,
+                useHTML: true
+            },
+            tooltip: {
+                enabled: false
+            },
             series: [{
                 name: 'No Data',
                 data: []
-            }]
+            }],
+            xAxis: [ xAxisConfigurator(false), xAxisConfigurator(true) ],
+            yAxis: {
+                endOnTick: false,
+                maxPadding: 0,
+                visible: false
+            }
 
         },
 
