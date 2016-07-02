@@ -7,38 +7,82 @@ var app = {};
 (function (app) {
     'use strict';
 
-    var model = {},
+    var model = {}, // placeholder for reference to model object
 
-        chart = {},
+        chart = {}, // placeholder for reference to Highcharts object
 
-        // Return local date per ISO8601 ('2016-06-28')
+        // hacky way to return localized date in desired format ('2016-06-28')
+        // thank you, Lithuania!
         dateNow = function dateNow() {
             return new Date().toLocaleDateString('lt-Latn');
+        },
+
+        xAxisCategories = [
+            '12 AM', '01 AM', '02 AM', '03 AM', '04 AM', '05 AM',
+            '06 AM', '07 AM', '08 AM', '09 AM', '10 AM', '11 AM',
+            '12 PM', '01 PM', '02 PM', '03 PM', '04 PM', '05 PM',
+            '06 PM', '07 PM', '08 PM', '09 PM', '10 PM', '11 PM'
+        ],
+
+        getClockFace = function getClockFace() {
+            // this.value returns a member of xAxisCategories
+            var clockFaces = [
+                    '&#x1f55b', '&#x1f550', '&#x1f551', '&#x1f552',
+                    '&#x1f553', '&#x1f554', '&#x1f555', '&#x1f556',
+                    '&#x1f557', '&#x1f558', '&#x1f559', '&#x1f55a'
+                ],
+                hour = parseInt(this.value.slice(0,2)),
+                face = clockFaces[hour % 12];
+
+                return face;
+        },
+
+        xAxisConfigurator = function xAxisConfigurator(opposite = false) {
+            var axisConfig = {
+                    categories: xAxisCategories,
+                    gridLineWidth: 1,
+                    labels: {
+                        distance: 0,
+                        formatter: getClockFace,
+                        useHTML: true,
+                        style: {
+                            color: "#fff",
+                            fontSize: '1.5em'
+                        }
+                    },
+                    lineWidth: 0,
+                    tickmarkPlacement: 'on'
+                };
+
+            if(opposite) {
+                axisConfig.linkedTo = 0;
+                axisConfig.opposite = opposite;
+                axisConfig.tickLength = 16;
+            }
+
+            return axisConfig;
         },
 
         options = {
             chart: {
                 type: 'areaspline'
             },
-            title: {
-                text: '311 by the Hour'
-            },
-            subtitle: {
-                text: "NYC 311 calls by complaint type and the hour of day " +
-                    " in which calls were placed for the week ending " +
-                     "<input id='date-select' type='date' value='2010-08-03' " +
-                     "placeholder='yyyy-mm-dd' min='2010-01-01' " +
-                     "max='" + dateNow() + "'><br/>" +
-                     "[Inspired by <a href=" +
-                     "'http://www.wired.com/2010/11/ff_311_new_york/all/1' " +
-                     "target='_blank'>this</a>. See the <a " +
-                     "href='https://github.com/dcr8898/311_by_the_hour' " +
-                     "target='_blank'>Source code</a>.]",
-                useHTML: true,
+
+            colors: [
+                '#bb005f', '#ff005e', '#00aeaa', '#afc5b9', '#f7ff00',
+                '#cf0021', '#beeb2c', '#00a5c1', '#ce0087', '#61cff5',
+                '#8b4ca9', '#00a3f2', '#ff006f', '#6b0090', '#69ca45',
+                '#009e52', '#ffd600', '#a00087', '#ff3ca5', '#e4001e',
+                '#ff9700', '#ecff00', '#1f48ab', '#a20057', '#009fa0',
+                '#dca9ef'
+            ],
+            credits: {
+                text: 'Credits & Source Code',
+                href: 'https://github.com/dcr8898/311_by_the_hour',
                 style: {
-                    color: '#ffffff',
-                    'text-align': 'center',
-                    'font-size': '1em'
+                    cursor: 'pointer',
+                    color: '#ff7302',
+                    fontSize: '1em'
                 }
             },
             legend: {
@@ -48,44 +92,6 @@ var app = {};
                 itemWidth: 220,
                 borderWidth: 1,
                 backgroundColor: (Highcharts.theme.legendBackgroundColor)
-            },
-            xAxis: {
-                categories: [
-                    '12 AM', '01 AM', '02 AM', '03 AM', '04 AM', '05 AM',
-                    '06 AM', '07 AM', '08 AM', '09 AM', '10 AM', '11 AM',
-                    '12 PM', '01 PM', '02 PM', '03 PM', '04 PM', '05 PM',
-                    '06 PM', '07 PM', '08 PM', '09 PM', '10 PM', '11 PM'
-                ],
-                labels: {
-                    formatter: function() {
-                        switch(this.value.slice(0,2)) {
-                            case '01':  return '<h1>&#x1f550</h1>';
-                            case '02':  return '<h1>&#x1f551</h1>';
-                            case '03':  return '<h1>&#x1f552</h1>';
-                            case '04':  return '<h1>&#x1f553</h1>';
-                            case '05':  return '<h1>&#x1f554</h1>';
-                            case '06':  return '<h1>&#x1f555</h1>';
-                            case '07':  return '<h1>&#x1f556</h1>';
-                            case '08':  return '<h1>&#x1f557</h1>';
-                            case '09':  return '<h1>&#x1f558</h1>';
-                            case '10':  return '<h1>&#x1f559</h1>';
-                            case '11':  return '<h1>&#x1f55a</h1>';
-                            case '12':  return '<h1>&#x1f55b</h1>';
-                        }
-                    },
-                    useHTML: true
-                },
-                tickmarkPlacement: 'on',
-                gridLineWidth: 1
-            },
-            yAxis: {
-                visible: false
-            },
-            tooltip: {
-                enabled: false
-            },
-            credits: {
-                enabled: false
             },
             plotOptions: {
                 areaspline: {
@@ -101,22 +107,39 @@ var app = {};
                     }
                 }
             },
+            title: {
+                text: "<strong>311 by the Hour</strong> for week ending " +
+                     "<input id='date-select' type='date' value='2010-08-03' " +
+                     "placeholder='yyyy-mm-dd' min='2010-01-01' max='" +
+                     dateNow() + "'>",
+                     margin: 5,
+                useHTML: true
+            },
+            tooltip: {
+                enabled: false
+            },
             series: [{
                 name: 'No Data',
                 data: []
-            }]
+            }],
+            xAxis: [ xAxisConfigurator(false), xAxisConfigurator(true) ],
+            yAxis: {
+                endOnTick: false,
+                maxPadding: 0,
+                visible: false
+            }
 
         },
 
         validDate = function(date) {
-            // Check format
+            // valid format
             if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) { return false; }
 
-            // Check for valid date
+            // valid date
             var dateObj = new Date(date);
             if (dateObj == 'Invalid Date') { return false; }
 
-            // Check for valid date range (2010-01-01 to present)
+            // valid range (2010-01-01 to present)
             var minDate = new Date('2010-01-01'),
                 maxDate = Date.now() - (dateObj.getTimezoneOffset() * 60000);
             if (dateObj < minDate || dateObj > maxDate) { return false; }
@@ -545,7 +568,7 @@ var app = {};
         // Object literal that inverts the key (index)/value pairs of the
         // categories array.  I use this to map complaint_types in the result
         // set to their proper category by index without having to call
-        // '.indexOf()' 35,000 times for every result set. :)
+        // '.indexOf()' 35,000 times for every set of call data returned. :)
         categoryIndexMap = categories.reduce(function(indexes, category, i) {
             indexes[category] = i;
             return indexes;
@@ -588,21 +611,19 @@ var app = {};
             return category;
         },
 
-        // maxChartHeight is set higher than maxDataHeight to prevent the chart
-        // from touching the x-axis.
         calculateOffset = function calculateOffset(offsetData) {
-            var maxDataHeight = Math.max.apply(null, offsetData),
-                maxChartHeight = maxDataHeight * 1.2;
+            var maxDataHeight = Math.max.apply(null, offsetData);
 
             return offsetData.map(function(hourlyDataHeight) {
-                return (maxChartHeight - hourlyDataHeight) / 2.0;
+                return (maxDataHeight - hourlyDataHeight) / 2.0;
             });
         },
 
-        dataResourceError = function dataResourceError(jqxhr, status, error) {
+        dataResourceError = function dataResourceError(_jqxhr, status, error) {
             view.hideMessage();
-            var errorText = status + "," + error;
-            alert("Unable to obtain call data:\n" + errorText);
+            var errorText = status + ", " + error;
+            alert("Unable to obtain 311 call data:\n\n'" + errorText +
+                "'\n\nPlease try again.");
         },
 
         parseData = function parseData(callData) {
@@ -634,30 +655,13 @@ var app = {};
         },
 
         getDataForWeekEnding = function getDataForWeekEnding(date) {
-            view.showMessage("Requesting 311 call data . . .");
+            view.showMessage("Requesting 311 call data . . . " +
+                "Sorry, this can take 30 seconds or so :(");
             var resourceURI = dataResourceURL + queryString(date);
             $.getJSON(resourceURI)
                 .done(parseData)
                 .fail(dataResourceError);
         },
-            // $.getJSON(,
-            //     function (response) {
-            //         response.forEach(function(complaint) {
-            //             if(complaint['created_date'].slice(11) != "00:00:00.000") {
-            //                 var category = categoriesMap[complaint['complaint_type']];
-            //                 var hour = parseInt(complaint['created_date'].slice(11, 13));
-            //                 var index = categoryIndexMap[category];
-            //                 returnDataSeries[index].data[hour]++;
-            //                 dummyOffsetSeries.data[hour]++;
-            //             }
-            //         });
-            //         max = Math.max.apply(null, dummyOffset.data) * 1.2;
-            //         dummyOffset.data = dummyOffset.data.map(function(datum) { return (max - datum) / 2.0 });
-            //         series.push(dummyOffsetSeries);
-            //         options.series = series;
-            //         $('#container').highcharts(options);
-            //     }
-            // );
 
         api = {
           init: init,
@@ -682,6 +686,10 @@ var app = {};
 
     $(function() {
         threeOneOne.view.initChart('container');
+        // Highcharts blocks several event handlers, which makes interacting
+        // with input elements on the chart problematic, especially in Firefox.
+        // This click handler restores the ability to select the date input.
+        $('#date-select').click(function() { this.select() });
         $('#date-select').change(threeOneOne.view.getData);
         $('#date-select').change();
     });
