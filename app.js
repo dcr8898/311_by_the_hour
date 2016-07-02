@@ -36,12 +36,37 @@ var app = {};
                 return face;
         },
 
+        xAxisConfigurator = function xAxisConfigurator(opposite) {
+            var axisConfig = {
+                    categories: xAxisCategories,
+                    gridLineWidth: 1,
+                    labels: {
+                        distance: 0,
+                        formatter: getClockFace,
+                        useHTML: true,
+                        style: {
+                            color: "#fff",
+                            fontSize: '1.5em'
+                        }
+                    },
+                    lineWidth: 0,
+                    tickmarkPlacement: 'on'
+                };
+
+            if(opposite) {
+                axisConfig.linkedTo = 0;
+                axisConfig.opposite = opposite;
+            }
+
+            return axisConfig;
+        },
+
         options = {
             chart: {
                 type: 'areaspline'
             },
             title: {
-                text: "<strong>311 by the Hour</strong> for the week ending " +
+                text: "<strong>311 by the Hour</strong> for week ending " +
                      "<input id='date-select' type='date' value='2010-08-03' " +
                      "placeholder='yyyy-mm-dd' min='2010-01-01' max='" +
                      dateNow() + "'>",
@@ -55,22 +80,9 @@ var app = {};
                 borderWidth: 1,
                 backgroundColor: (Highcharts.theme.legendBackgroundColor)
             },
-            xAxis: {
-                categories: xAxisCategories,
-                labels: {
-                    distance: 0,
-                    formatter: getClockFace,
-                    useHTML: true,
-                    style: {
-                        color: "#fff",
-                        fontSize: '1.5em'
-                    }
-                },
-                tickmarkPlacement: 'on',
-                gridLineWidth: 1,
-                lineWidth: 0
-            },
+            xAxis: [ xAxisConfigurator(false), xAxisConfigurator(true) ],
             yAxis: {
+                maxPadding: 0,
                 visible: false
             },
             tooltip: {
@@ -586,14 +598,11 @@ var app = {};
             return category;
         },
 
-        // maxChartHeight is set higher than maxDataHeight to prevent the chart
-        // from touching the x-axis.
         calculateOffset = function calculateOffset(offsetData) {
-            var maxDataHeight = Math.max.apply(null, offsetData),
-                maxChartHeight = maxDataHeight * 1.2;
+            var maxDataHeight = Math.max.apply(null, offsetData);
 
             return offsetData.map(function(hourlyDataHeight) {
-                return (maxChartHeight - hourlyDataHeight) / 2.0;
+                return (maxDataHeight - hourlyDataHeight) / 2.0;
             });
         },
 
