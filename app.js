@@ -7,11 +7,12 @@ var app = {};
 (function (app) {
     'use strict';
 
-    var model = {},
+    var model = {}, // placeholder for reference to model object
 
-        chart = {},
+        chart = {}, // placeholder for reference to Highcharts object
 
-        // Return local date per ISO8601 ('2016-06-28')
+        // hacky way to return localized date in desired format ('2016-06-28')
+        // thank you, Lithuania!
         dateNow = function dateNow() {
             return new Date().toLocaleDateString('lt-Latn');
         },
@@ -122,14 +123,14 @@ var app = {};
         },
 
         validDate = function(date) {
-            // Check format
+            // valid format
             if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) { return false; }
 
-            // Check for valid date
+            // valid date
             var dateObj = new Date(date);
             if (dateObj == 'Invalid Date') { return false; }
 
-            // Check for valid date range (2010-01-01 to present)
+            // valid range (2010-01-01 to present)
             var minDate = new Date('2010-01-01'),
                 maxDate = Date.now() - (dateObj.getTimezoneOffset() * 60000);
             if (dateObj < minDate || dateObj > maxDate) { return false; }
@@ -558,7 +559,7 @@ var app = {};
         // Object literal that inverts the key (index)/value pairs of the
         // categories array.  I use this to map complaint_types in the result
         // set to their proper category by index without having to call
-        // '.indexOf()' 35,000 times for every result set. :)
+        // '.indexOf()' 35,000 times for every set of call data returned. :)
         categoryIndexMap = categories.reduce(function(indexes, category, i) {
             indexes[category] = i;
             return indexes;
@@ -609,7 +610,7 @@ var app = {};
             });
         },
 
-        dataResourceError = function dataResourceError(jqxhr, status, error) {
+        dataResourceError = function dataResourceError(_jqxhr, status, error) {
             view.hideMessage();
             var errorText = status + ", " + error;
             alert("Unable to obtain 311 call data:\n\n'" + errorText +
