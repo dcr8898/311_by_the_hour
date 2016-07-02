@@ -56,6 +56,7 @@ var app = {};
             if(opposite) {
                 axisConfig.linkedTo = 0;
                 axisConfig.opposite = opposite;
+                axisConfig.tickLength = 16;
             }
 
             return axisConfig;
