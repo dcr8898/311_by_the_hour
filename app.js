@@ -33,7 +33,7 @@ var app = {};
                 hour = parseInt(this.value.slice(0,2)),
                 face = clockFaces[hour % 12];
 
-                return '<h1>' + face + '</h1>';
+                return face;
         },
 
         options = {
@@ -43,8 +43,8 @@ var app = {};
             title: {
                 text: "<strong>311 by the Hour</strong> for the week ending " +
                      "<input id='date-select' type='date' value='2010-08-03' " +
-                     "placeholder='yyyy-mm-dd' min='2010-01-01' " +
-                     "max='" + dateNow() + "'>",
+                     "placeholder='yyyy-mm-dd' min='2010-01-01' max='" +
+                     dateNow() + "'>",
                 useHTML: true
             },
             legend: {
@@ -58,8 +58,13 @@ var app = {};
             xAxis: {
                 categories: xAxisCategories,
                 labels: {
+                    distance: 0,
                     formatter: getClockFace,
-                    useHTML: true
+                    useHTML: true,
+                    style: {
+                        color: "#fff",
+                        fontSize: '1.5em'
+                    }
                 },
                 tickmarkPlacement: 'on',
                 gridLineWidth: 1,
