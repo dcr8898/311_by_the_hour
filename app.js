@@ -89,7 +89,7 @@ var app = {};
                 layout: 'horizontal',
                 align: 'center',
                 verticalAlign: 'bottom',
-                itemWidth: 220,
+                itemWidth: 230,
                 borderWidth: 1,
                 backgroundColor: (Highcharts.theme.legendBackgroundColor)
             },
@@ -108,7 +108,7 @@ var app = {};
                 }
             },
             title: {
-                text: "<strong>311 by the Hour</strong> for week ending " +
+                text: "<strong>311 BY THE HOUR</strong> for week ending " +
                      "<input id='date-select' type='date' value='2010-08-03' " +
                      "placeholder='yyyy-mm-dd' min='2010-01-01' max='" +
                      dateNow() + "'>",
