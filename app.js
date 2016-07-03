@@ -630,7 +630,7 @@ var app = {};
             view.showMessage("Parsing data . . .");
 
             var dataSeries = emptyDataSeries(categories),
-                floatIngoffset = emptyOffsetSeries();
+                floatingOffset = emptyOffsetSeries();
 
             callData.forEach(function(complaint) {
                 // unfortunately we must discard calls with invalid timestamps
@@ -639,12 +639,12 @@ var app = {};
                         hour = parseInt(complaint.created_date.slice(11, 13)),
                         index = categoryIndexMap[category];
                     dataSeries[index].data[hour]++;
-                    floatIngoffset.data[hour]++;
+                    floatingOffset.data[hour]++;
                 }
             });
 
-            floatIngoffset.data = calculateOffset(floatIngoffset.data);
-            dataSeries.push(floatIngoffset);
+            floatingOffset.data = calculateOffset(floatingOffset.data);
+            dataSeries.push(floatingOffset);
 
             view.hideMessage();
             view.updateChart(dataSeries);
