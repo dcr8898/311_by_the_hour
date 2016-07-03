@@ -188,9 +188,8 @@ var app = {};
                     "Please enter a valid date from 2010-01-01 through today " +
                     "in the form yyyy-m-d."
                 );
-                this.focus();
             }
-
+            this.select();
         },
 
         updateChart = function updateChart(dataSeries) {
