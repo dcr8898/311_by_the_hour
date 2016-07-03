@@ -1,6 +1,8 @@
 # 311 by the Hour
 A visual exploration of NYC 311 call data by complaint type and the hour of the day in which calls were placed.
 
+![311](https://cloud.githubusercontent.com/assets/12485272/16543762/75c8bfa0-40b6-11e6-907f-d8a64f060dd8.png)
+
 ## What is it?
 A while ago I saw [this amazing article](http://www.wired.com/2010/11/ff_311_new_york/all/1) in *Wired*.  The basic idea was to start with a week's worth of [NYC 311](http://www1.nyc.gov/311/about-311.page) call data, collect the data based on the category of the 311 complaint type, and then show what complaints were made by the hour of the day in which the calls were placed.  I found the results to be visually stunning. Don't you?  All credit for the concept go to Steven Johnson, the author of the article.
 
