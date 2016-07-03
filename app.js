@@ -57,7 +57,7 @@ var app = {};
             if(opposite) {
                 axisConfig.linkedTo = 0;
                 axisConfig.opposite = opposite;
-                axisConfig.tickLength = 16;
+                axisConfig.tickLength = 14;
             }
 
             return axisConfig;
@@ -65,7 +65,8 @@ var app = {};
 
         options = {
             chart: {
-                type: 'areaspline'
+                type: 'areaspline',
+                ignoreHiddenSeries: false
             },
 
             colors: [
@@ -560,7 +561,7 @@ var app = {};
             return {
                 data: [].concat(emptyDataPoints),
                 showInLegend: false,
-                fillColor: 'rgba(0,0,0,0)'
+                visible: false
             };
         },
 
@@ -629,7 +630,7 @@ var app = {};
             view.showMessage("Parsing data . . .");
 
             var dataSeries = emptyDataSeries(categories),
-                dummyOffset = emptyOffsetSeries();
+                floatIngoffset = emptyOffsetSeries();
 
             callData.forEach(function(complaint) {
                 // unfortunately we must discard calls with invalid timestamps
@@ -638,12 +639,12 @@ var app = {};
                         hour = parseInt(complaint.created_date.slice(11, 13)),
                         index = categoryIndexMap[category];
                     dataSeries[index].data[hour]++;
-                    dummyOffset.data[hour]++;
+                    floatIngoffset.data[hour]++;
                 }
             });
 
-            dummyOffset.data = calculateOffset(dummyOffset.data);
-            dataSeries.push(dummyOffset);
+            floatIngoffset.data = calculateOffset(floatIngoffset.data);
+            dataSeries.push(floatIngoffset);
 
             view.hideMessage();
             view.updateChart(dataSeries);
