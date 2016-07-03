@@ -6,6 +6,8 @@ A while ago I saw [this amazing article](http://www.wired.com/2010/11/ff_311_new
 
 A little digging (okay, a google search) revealed that the 311 data is freely available from the [NYC OpenData service](https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9), so I thought, "I bet I can do that! :wink:" (Yes, I sometimes think in emojis.)
 
+I think my version is cool becuase it lets you interact with the data. One thing you can do is jump around the calendar and see how complaint patterns change by season. **TIP: I realize that it takes 30+ seconds to retrieve each data set from the OpenData servers, but once they are cached by the browser, you can then cycle between previously returned data sets instantaneously.**  For example, in the Summer noise complaints are big and heat/hot water complaints are virtually non-existent, while in the Winter noise complaints go down and heat/hot water complaints increase dramatically.
+
 ## Why?
 1. Why not?
 2. As an exercise in writing JavaScript using a module code organization strategy.
