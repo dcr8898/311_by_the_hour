@@ -17,7 +17,7 @@ I think my version is cool becuase it lets you interact with the data. One thing
 
 ## How?
 1. [Highcharts](http://www.highcharts.com/) (of course)
-2. [jQuery](http://jquery.com/) (it's a Highcharts dependency, so why not?)
+2. [jQuery](http://jquery.com/) (Highcharts uses it, so why not?)
 3. Lots of JavaScript.
 4. 13M+ rows of data from [NYC OpenData](https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9).
 
