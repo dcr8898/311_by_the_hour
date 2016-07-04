@@ -13,11 +13,11 @@ I think my version is cool becuase it lets you interact with the data. One thing
 ## Why?
 1. Why not?
 2. As an exercise in writing JavaScript using a module code organization strategy.
-3. To see if I could push the awesome [Highcharts](http://www.highcharts.com/) libary into uncharted territory. (Um, yeah . . . the pun was intended . . . sorry.)
+3. To see if I could push the awesome [Highcharts](http://www.highcharts.com/) library into uncharted territory. (Um, yeah . . . the pun was intended . . . sorry.)
 
 ## How?
 1. [Highcharts](http://www.highcharts.com/) (of course)
-2. [jQuery](http://jquery.com/) (Highcharts uses it, so why not?)
+2. [jQuery](http://jquery.com/) (not strictly necessary, but Highcharts uses it, so why not?)
 3. Lots of JavaScript.
 4. 13M+ rows of data from [NYC OpenData](https://nycopendata.socrata.com/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9).
 
