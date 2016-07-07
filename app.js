@@ -109,10 +109,10 @@ var app = {};
             },
             title: {
                 text: "<strong>311 BY THE HOUR</strong> for week ending " +
-                     "<input id='date-select' type='date' value='2010-08-03' " +
-                     "placeholder='yyyy-mm-dd' min='2010-01-01' max='" +
-                     dateNow() + "'>",
-                     margin: 5,
+                    "<input id='date-select' type='date' value='2010-08-03' " +
+                    "placeholder='yyyy-mm-dd' min='2010-01-01' max='" +
+                    dateNow() + "'>",
+                margin: 5,
                 useHTML: true
             },
             tooltip: {
@@ -215,7 +215,7 @@ var app = {};
 (function (app) {
     'use strict';
 
-    var view = {},
+    var view = {}, // placeholder for reference to view object
 
         // Each data series will consist of 24 data points.
         emptyDataPoints = [
@@ -555,7 +555,7 @@ var app = {};
             });
         },
 
-        // This data series will be used to create the floating area effect.
+        // This data series will be used to create the floating stack effect.
         emptyOffsetSeries = function emptyOffsetSeries() {
             return {
                 data: [].concat(emptyDataPoints),
@@ -564,8 +564,8 @@ var app = {};
             };
         },
 
-        // Object literal that inverts the key (index)/value pairs of the
-        // categories array.  I use this to map complaint_types in the result
+        // Object literal that inverts the key/value pairs (i.e., key = index)
+        // of the categories array.  Used to map complaint_types in the result
         // set to their proper category by index without having to call
         // '.indexOf()' 35,000 times for every set of call data returned. :)
         categoryIndexMap = categories.reduce(function(indexes, category, i) {
