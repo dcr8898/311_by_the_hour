@@ -47,12 +47,16 @@ var app = {};
                     lineWidth: 0,
                     tickInterval: 1,
                     tickmarkPlacement: 'on'
-                };
+                },
+
+                oppositeAxisConfig = {
+                    linkedTo: 0,
+                    opposite: opposite,
+                    tickLength: 14
+                }
 
             if(opposite) {
-                axisConfig.linkedTo = 0;
-                axisConfig.opposite = opposite;
-                axisConfig.tickLength = 14;
+                $.extend(axisConfig, oppositeAxisConfig);
             }
 
             return axisConfig;
