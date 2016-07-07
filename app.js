@@ -17,40 +17,35 @@ var app = {};
             return new Date().toLocaleDateString('lt-Latn');
         },
 
-        xAxisCategories = [
-            '12 AM', '01 AM', '02 AM', '03 AM', '04 AM', '05 AM',
-            '06 AM', '07 AM', '08 AM', '09 AM', '10 AM', '11 AM',
-            '12 PM', '01 PM', '02 PM', '03 PM', '04 PM', '05 PM',
-            '06 PM', '07 PM', '08 PM', '09 PM', '10 PM', '11 PM'
-        ],
-
         getClockFace = function getClockFace() {
-            // this.value returns a member of xAxisCategories
+            // lower surrogates for unicode clock faces
+            // needed for proper function of String.fromCharCode
+            // until String.fromCodePoint obtains wider browser support
             var clockFaces = [
-                    '&#x1f55b', '&#x1f550', '&#x1f551', '&#x1f552',
-                    '&#x1f553', '&#x1f554', '&#x1f555', '&#x1f556',
-                    '&#x1f557', '&#x1f558', '&#x1f559', '&#x1f55a'
+
+                    0xdd5b, 0xdd50, 0xdd51, 0xdd52, 0xdd53, 0xdd54,
+                    0xdd55, 0xdd56, 0xdd57, 0xdd58, 0xdd59, 0xdd5a
                 ],
-                hour = parseInt(this.value.slice(0,2)),
+                hour = this.value,
                 face = clockFaces[hour % 12];
 
-                return face;
+                // higher surrogate is the same for all clock faces
+                return String.fromCharCode.apply(null, [0xd83d, face]);
         },
 
         xAxisConfigurator = function xAxisConfigurator(opposite = false) {
             var axisConfig = {
-                    categories: xAxisCategories,
                     gridLineWidth: 1,
                     labels: {
                         distance: 0,
                         formatter: getClockFace,
-                        useHTML: true,
                         style: {
                             color: "#fff",
                             fontSize: '1.5em'
                         }
                     },
                     lineWidth: 0,
+                    tickInterval: 1,
                     tickmarkPlacement: 'on'
                 };
 
