@@ -22,7 +22,6 @@ var app = {};
             // needed for proper function of String.fromCharCode
             // until String.fromCodePoint obtains wider browser support
             var clockFaces = [
-
                     0xdd5b, 0xdd50, 0xdd51, 0xdd52, 0xdd53, 0xdd54,
                     0xdd55, 0xdd56, 0xdd57, 0xdd58, 0xdd59, 0xdd5a
                 ],
